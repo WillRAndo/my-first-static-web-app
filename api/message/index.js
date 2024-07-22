@@ -32,7 +32,7 @@ module.exports = async function (context, req) {
         // const items = await getItems();
         context.res = {
             status: 200, /* Defaults to 200 */
-            json: data
+            body: JSON.stringify(data)
         };
         context.res.body = JSON.stringify(context.res.json)
         // return context;
