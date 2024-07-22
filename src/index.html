@@ -2,24 +2,6 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
-</head>
-
-<body>
-  <main>
-    <h1>Vanilla JavaScript App</h1>
-  </main>
-</body>
-
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
@@ -27,17 +9,87 @@
 </head>
 
 <body>
-    <main>
-    <h1>Vanilla JavaScript App</h1>
-    <p>Loading content from the API: <b id="name">...</b></p>
-    </main>
 
-    <script>
-    (async function() {
-        const { text } = await( await fetch(`/api/message`)).json();
-        document.querySelector('#name').textContent = text;
-    }());
-    </script>
+  <main>
+    <h1>Vanilla JavaScript App</h1>
+    <p>Loading content from the API:</p>
+    <pre id="data">...</pre>
+</main>
+
+<script>
+(async function() {
+    try {
+        const response = await fetch(`/api/message`);
+        const data = await response.json();
+        document.querySelector('#data').textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+        document.querySelector('#data').textContent = "Error loading content";
+    }
+}());
+</script>
+
+
 </body>
 
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JavaScript App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <h1>Vanilla JavaScript App</h1>
+        <p>Loading content from the API:</p>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Customer Contact</th>
+                    <th>Customer ID</th>
+                    <th>Is Active</th>
+                    <th>Eligible Products</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </main>
+
+    <script >(async function() {
+      try {
+          const response = await fetch(`/api/message`);
+          const data = await response.json();
+  
+          const tableBody = document.querySelector('#data-table tbody');
+          tableBody.innerHTML = '';
+  
+          data.forEach(item => {
+              const row = document.createElement('tr');
+  
+              row.innerHTML = `
+                  <td>${item.customerName}</td>
+                  <td>${item.customerContact || ''}</td>
+                  <td>${item.externalData.customerId}</td>
+                  <td>${item.isActive}</td>
+                  <td>${item.eligibleProducts.join(', ')}</td>
+                  <td>${item.notifications ? item.notifications.email : ''}</td>
+              `;
+  
+              tableBody.appendChild(row);
+          });
+      } catch (error) {
+          console.error("Error loading content:", error);
+      }
+  }());</script>
+</body>
 </html>
+
+

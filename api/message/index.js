@@ -1,9 +1,4 @@
-// module.exports = async function (context, req) {
-//     context.res.json({
-//         text: "Hello from the API wando"
-//     });
-// };
-
+// Template Output
 // module.exports = async function (context, req) {
 //     context.log('JavaScript HTTP trigger function processed a request.');
 
@@ -18,8 +13,32 @@
 //     };
 // }
 
+
+// Outputs Text
+// module.exports = async function (context, req) {
+//     context.res.json({
+//         text: "Hello from the API wando"
+//     });
+// };
+
+require('dotenv').config();
+
+// requests data from UnityFuel Customers
+const { getItems } = require('../../db');
+
 module.exports = async function (context, req) {
-    context.res.json({
-        text: "Hello from the API wando"
-    });
+    try {
+        const items = await getItems();
+        context.res = {
+            // status: 200, /* Defaults to 200 */
+            body: items.length ? items : "No data found"
+        };
+        console.log("API Response:", context.res.body);
+    } catch (error) {
+        console.error("API Error:", error);
+        context.res = {
+            status: 500,
+            body: "Error connecting to MongoDB: " + error.message
+        };
+    }
 };
