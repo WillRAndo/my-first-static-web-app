@@ -28,7 +28,7 @@ require('dotenv').config();
 const { getItems } = require('../../db');
 
 module.exports = async function (context, req) {
-    try {
+    // try {
         // const items = await getItems();
         context.res = {
             status: 200, /* Defaults to 200 */
@@ -38,11 +38,11 @@ module.exports = async function (context, req) {
             }
         };
         console.log("API Response:", context.res.json);
-    } catch (error) {
-        console.error("API Error:", error);
-        context.res = {
-            status: 500,
-            body: "Error connecting to MongoDB: " + error.message
-        };
-    }
+    // } catch (error) {
+    //     console.error("API Error:", error);
+    //     context.res = {
+    //         status: 500,
+    //         body: "Error connecting to MongoDB: " + error.message
+    //     };
+    // }
 };
