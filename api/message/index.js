@@ -21,6 +21,7 @@
 //     });
 // };
 
+const data = require('../../data'); 
 require('dotenv').config();
 
 // requests data from UnityFuel Customers
@@ -28,10 +29,10 @@ const { getItems } = require('../../db');
 
 module.exports = async function (context, req) {
     try {
-        const items = await getItems();
+        // const items = await getItems();
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: items.length ? items : "No data found"
+            body: data
         };
         console.log("API Response:", context.res.body);
     } catch (error) {
