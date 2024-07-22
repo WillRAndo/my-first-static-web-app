@@ -34,6 +34,7 @@
 
 </html> -->
 
+<!-- looks nicer -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +87,9 @@
               tableBody.appendChild(row);
           });
       } catch (error) {
-          console.error("Error loading content:", error);
+          // console.error("Error loading content:", error);
+          document.querySelector('#data').textContent=error.message;
+
       }
   }());</script>
 </body>
