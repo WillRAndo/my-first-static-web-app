@@ -24,12 +24,10 @@ let database;
 // module.exports = { getItem };
 
 
-
-
-
 async function connect() {
     try {
         if (!client) {
+            console.log('attempting to connect');
             client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
             await client.connect();
             database = client.db('UnityFuel'); // DB name
@@ -37,7 +35,7 @@ async function connect() {
         }
         return database;
     } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
+        console.error("Error connecting to MongoDB:", error.message);
         throw error;
     }
 }
