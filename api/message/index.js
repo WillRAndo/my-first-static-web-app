@@ -31,10 +31,11 @@ module.exports = async function (context, req) {
     try {
         // const items = await getItems();
         context.res = {
-            // status: 200, /* Defaults to 200 */
+            status: 200, /* Defaults to 200 */
             body: data
         };
-        console.log("API Response:", context.res.body);
+        // return context;
+        console.log("API Response:", data);
     } catch (error) {
         console.error("API Error:", error);
         context.res = {
