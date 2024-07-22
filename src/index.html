@@ -65,7 +65,7 @@
     </main>
 
     <script >(async function() {
-      try {
+      // try {
           const response = await fetch(`/api/message`);
           const data = await response.json();
   
@@ -86,11 +86,11 @@
   
               tableBody.appendChild(row);
           });
-      } catch (error) {
+      // } catch (error) {
           // console.error("Error loading content:", error);
-          document.querySelector('#data').textContent=error.message;
+          // document.querySelector('#data').textContent=error.message;
 
-      }
+      // }
   }());</script>
 </body>
 </html>

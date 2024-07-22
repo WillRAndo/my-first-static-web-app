@@ -27,7 +27,7 @@ let database;
 async function connect() {
     try {
         if (!client) {
-            console.log('attempting to connect');
+            console.log('attempting to connect' + uri);
             client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
             await client.connect();
             database = client.db('UnityFuel'); // DB name
