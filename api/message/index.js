@@ -32,10 +32,11 @@ module.exports = async function (context, req) {
         // const items = await getItems();
         context.res = {
             status: 200, /* Defaults to 200 */
-            body: data
+            json: data
         };
+        context.res.body = JSON.stringify(context.res.json)
         // return context;
-        console.log("API Response:", data);
+        console.log("API Response:", context.res.json);
     } catch (error) {
         console.error("API Error:", error);
         context.res = {
