@@ -32,10 +32,11 @@ module.exports = async function (context, req) {
         // const items = await getItems();
         context.res = {
             status: 200, /* Defaults to 200 */
-            body: JSON.stringify(data)
+            body: data,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         };
-        context.res.body = JSON.stringify(context.res.json)
-        // return context;
         console.log("API Response:", context.res.json);
     } catch (error) {
         console.error("API Error:", error);
