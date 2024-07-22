@@ -18,13 +18,13 @@
 
 <script>
 (async function() {
-    try {
+    // try {
         const response = await fetch(`/api/message`);
         const data = await response.json();
         document.querySelector('#data').textContent = JSON.stringify(data, null, 2);
-    } catch (error) {
-        document.querySelector('#data').textContent = "Error loading content";
-    }
+    // } catch (error) {
+    //     document.querySelector('#data').textContent = "Error loading content";
+    // }
 }());
 </script>
 
