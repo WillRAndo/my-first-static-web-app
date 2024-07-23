@@ -18,11 +18,11 @@ const uri = process.env.MONGODB_URI;
 
 module.exports = async function (context, req) {
 
-    let resp = await fetch('https://api.ipify.org', {
-        method: 'GET',
-        redirect: 'follow'
-    });
-    let outboundIP = await resp.text();
+    // let resp = await fetch('https://api.ipify.org', {
+    //     method: 'GET',
+    //     redirect: 'follow'
+    // });
+    // let outboundIP = await resp.text();
     try {
 
         // const items = await getItems();

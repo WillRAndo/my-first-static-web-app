@@ -1,32 +1,73 @@
-
+/* Global Styles */
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
 }
 
+/* Main Container Styles */
+main {
+  max-width: 1000px; /* Increased max-width for more content */
+  margin: 50px auto; /* Center the main container */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+}
+
+/* Heading Style */
 h1 {
+  text-align: center;
   color: #333;
+  margin-bottom: 20px;
 }
 
+/* Table Styles */
 table {
-  width: 100%;
+  width: 100%; /* Use full width of the main container */
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-table, th, td {
-  border: 1px solid #ccc;
-}
-
 th, td {
-  padding: 10px;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
   text-align: left;
+  word-wrap: break-word; /* Allows breaking long words or URLs */
 }
 
+/* Table Header Style */
 th {
   background-color: #f2f2f2;
+  color: #333;
 }
 
+/* Zebra Striping for Table Rows */
 tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+/* Table Hover Effect */
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Paragraph Style for Loading and Error Messages */
+p {
+  text-align: center;
+  color: #666;
+}
+
+/* Responsive Table Styles */
+@media (max-width: 600px) {
+  th, td {
+      padding: 8px; /* Reduced padding for smaller screens */
+  }
+
+  main {
+      padding: 10px; /* Reduced padding for the main container */
+  }
 }

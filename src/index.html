@@ -1,13 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Vanilla JavaScript App</title>
 </head>
-
 <body>
 
   <main>
@@ -15,7 +13,6 @@
     <p>Loading content from the API:</p>
     <pre id="data">...</pre>
 </main>
-
 <script>
 (async function() {
     try {
@@ -27,72 +24,54 @@
     }
 }());
 </script>
-
-
 </body>
+</html> -->
 
-
-</html>
-
-<!-- looks nicer -->
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanilla JavaScript App</title>
+    <title>Vue.js and MongoDB App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main>
-        <h1>Vanilla JavaScript App</h1>
-        <p>Loading content from the API:</p>
-        <table id="data-table">
+    <main id="app">
+        <h1>Customer Data</h1>
+        <p v-if="loading">Loading...</p>
+        <p v-else-if="error">{{ error }}</p>
+
+        <table v-if="items.length">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer ID</th>
-                    <th>Is Active</th>
+                    <th>Active</th>
                     <th>Eligible Products</th>
                     <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-                Data will be inserted here -->
-            <!-- </tbody>
+                <tr v-for="item in items" :key="item._id">
+                    <td>{{ item._id }}</td>
+                    <td>{{ item.customerName }}</td>
+                    <td>{{ item.customerContact || 'N/A' }}</td>
+                    <td>{{ item.externalData.customerId }}</td>
+                    <td>{{ item.isActive ? 'Yes' : 'No' }}</td>
+                    <td>{{ item.eligibleProducts.join(', ') }}</td>
+                    <td>{{ item.notifications?.email || 'N/A' }}</td>
+                </tr>
+            </tbody>
         </table>
+        <p v-else>No data found</p>
     </main>
 
-    <script >(async function() {
-      // try {
-          const response = await fetch(`/api/message`);
-          const data = await response.json();
-  
-          const tableBody = document.querySelector('#data-table tbody');
-          tableBody.innerHTML = '';
-  
-          data.forEach(item => {
-              const row = document.createElement('tr');
-  
-              row.innerHTML = `
-                  <td>${item.customerName}</td>
-                  <td>${item.customerContact || ''}</td>
-                  <td>${item.externalData.customerId}</td>
-                  <td>${item.isActive}</td>
-                  <td>${item.eligibleProducts.join(', ')}</td>
-                  <td>${item.notifications ? item.notifications.email : ''}</td>
-              `;
-  
-              tableBody.appendChild(row);
-          });
-      // } catch (error) {
-          // console.error("Error loading content:", error);
-          // document.querySelector('#data').textContent=error.message;
-
-      // }
-  }());</script>
+    <!-- Add Vue.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
 </body>
-</html> -->
+</html>
 
 
