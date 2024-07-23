@@ -26,12 +26,14 @@ module.exports = async function (context, req) {
     // };
     // context.done();
 
-    context.res = {
-        status: 200,
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+    context.res.body = {
+        data
+        // status: 200,
+        // headers: {
+        //     "Content-Type": "application/json"
+        // },
+        // text: JSON.stringify(data)
+
     };
 
 };
