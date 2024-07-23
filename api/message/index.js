@@ -17,7 +17,14 @@ const uri = process.env.MONGODB_URI;
 // const { getItems } = require('../common/db.js');
 
 module.exports = async function (context, req) {
+
+    let resp = await fetch('https://api.ipify.org', {
+        method: 'GET',
+        redirect: 'follow'
+    });
+    let outboundIP = await resp.text();
     try {
+
         // const items = await getItems();
         context.log("Connected to MongoDB" + uri);
 
@@ -37,7 +44,7 @@ module.exports = async function (context, req) {
         context.log("API Error:", error);
         context.res = {
             status: 500,
-            body: "Error connecting to MongoDB from index.js: " + error.message
+            body: `Error connecting to MongoDB from ${outboundIP} index.js: ${error.message}`
         };
     }
 };
