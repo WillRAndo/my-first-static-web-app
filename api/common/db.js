@@ -39,7 +39,7 @@ const uri = process.env.MONGODB_URI;
 let client;
 
 async function connectToDatabase() {
-  if (!client || !client.isConnected()) {
+  if (!client) {
     try {
       client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
       await client.connect();
@@ -48,7 +48,7 @@ async function connectToDatabase() {
       throw error;
     }
   }
-  return client.db('UnityFuel'); // Replace with actual database name
+  return client.db('UnityFuel');
 }
 
 async function getItems() {
@@ -57,7 +57,7 @@ async function getItems() {
     if (!db) {
       throw new Error("Database connection is not established.");
     }
-    const collection = db.collection('customers'); // Replace with actual collection name
+    const collection = db.collection('customers');
     if (!collection) {
       throw new Error("Collection not found.");
     }
