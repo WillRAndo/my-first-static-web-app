@@ -13,9 +13,10 @@
 //     };
 // }
 
-const data = require('../../data'); 
+
 // Outputs Text
 module.exports = async function (context, req) {
+    const data = require('../../data'); 
     // context.res.json({
     //     text: "Hello from the API wando"
 
