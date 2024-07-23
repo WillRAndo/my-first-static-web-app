@@ -16,24 +16,24 @@
 
 
 
-// const data = require('../../data.js'); 
+const data = require('./data.js'); 
 
-const data = {
-    "_id": "61dbe610755daebc5155e468",
-    "customerName": "APCO",
-    "customerContact": null,
-    "externalData": {
-        "customerId": 400081
-    },
-    "isActive": true,
-    "eligibleProducts": [
-        "AUTOGAS"
-    ],
-    "__v": 0,
-    "notifications": {
-        "email": "saraht@apco.com.au"
-    }
-}; 
+// const data = {
+//     "_id": "61dbe610755daebc5155e468",
+//     "customerName": "APCO",
+//     "customerContact": null,
+//     "externalData": {
+//         "customerId": 400081
+//     },
+//     "isActive": true,
+//     "eligibleProducts": [
+//         "AUTOGAS"
+//     ],
+//     "__v": 0,
+//     "notifications": {
+//         "email": "saraht@apco.com.au"
+//     }
+// }; 
 
 // Outputs Text
 module.exports = async function (context, req) {

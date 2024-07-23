@@ -1,4 +1,4 @@
-module.exports = 
+const data = 
 [
     {
         "_id": "61dbe610755daebc5155e468",
@@ -57,3 +57,5 @@ module.exports =
     }
 ]
 ; 
+
+module.exports = data;
