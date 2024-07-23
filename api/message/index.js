@@ -13,18 +13,27 @@
 //     };
 // }
 
-
+const data = require('../../data'); 
 // Outputs Text
 module.exports = async function (context, req) {
-    const data = require('../../data'); 
+
     // context.res.json({
     //     text: "Hello from the API wando"
 
     // });
+    // context.res = {
+    //     body: data,
+    // };
+    // context.done();
+
     context.res = {
-        body: data,
+        status: 200,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
     };
-    context.done();
+
 };
 
 // const data = require('../../data'); 
