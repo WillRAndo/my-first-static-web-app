@@ -21,23 +21,32 @@
 //     });
 // };
 
-const data = require('../../data.js'); 
+const data = require('../../data'); 
 require('dotenv').config();
 
 // requests data from UnityFuel Customers
 const { getItems } = require('../../db');
 
 module.exports = async function (context, req) {
+
+    const message = "Hello, World! This is a test endpoint.";
+
+
     // try {
         // const items = await getItems();
+
+
         context.res = {
             status: 200, /* Defaults to 200 */
-            body: data,
+            // body: data,
+            body: {message},
             headers: {
                 'Content-Type': 'application/json'
             }
         };
         console.log("API Response:", context.res.body);
+
+
     // } catch (error) {
     //     console.error("API Error:", error);
     //     context.res = {
