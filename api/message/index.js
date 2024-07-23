@@ -16,38 +16,40 @@
 
 
 
-const data = require('../common/data.js'); 
+// const data = require('../common/data.js'); 
 
 
-// Outputs Text
-module.exports = async function (context, req) {
+// // Outputs Text
+// module.exports = async function (context, req) {
 
-    // context.res.json({
-    //     text: "Hello from the API wando"
-    // });
+//     // context.res.json({
+//     //     text: "Hello from the API wando"
+//     // });
 
-    context.res = {
-        body: data,
-    };
-    context.done();
+//     context.res = {
+//         body: data,
+//     };
+//     context.done();
 
 
-};
+// };
 
 // api/message.js
-// const { getItem } = require('./db');
+const { getItems } = require('../common/db.js');
 
-// module.exports = async function (context, req) {
-//     try {
-//         const item = await getItem();
-//         context.res = {
-//             // status: 200, /* Defaults to 200 */
-//             body: { text: item ? item.text : "No data found" }
-//         };
-//     } catch (error) {
-//         context.res = {
-//             status: 500,
-//             body: "Error connecting to MongoDB: " + error.message
-//         };
-//     }
-// };
+module.exports = async function (context, req) {
+    try {
+        const items = await getItems();
+        context.res = {
+            // status: 200, /* Defaults to 200 */
+            body: items.length ? items : "No data found"
+        };
+        console.log("API Response:", context.res.body);
+    } catch (error) {
+        console.error("API Error:", error);
+        context.res = {
+            status: 500,
+            body: "Error connecting to MongoDB: " + error.message
+        };
+    }
+};

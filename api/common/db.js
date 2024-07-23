@@ -5,29 +5,11 @@ const uri = process.env.MONGODB_URI;
 let client;
 let database;
 
-// async function connect() {
-//     if (!client) {
-//         client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//         await client.connect();
-//         database = client.db('UnityFuel'); // Replace with your database name
-//     }
-//     return database;
-// }
-
-// async function getItem() {
-//     const db = await connect();
-//     const collection = db.collection('customers'); // Replace with your collection name
-//     const item = await collection.findOne(); // Modify query as needed
-//     return item;
-// }
-
-// module.exports = { getItem };
 
 
 async function connect() {
     try {
         if (!client) {
-            console.log('attempting to connect' + uri);
             client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
             await client.connect();
             database = client.db('UnityFuel'); // DB name
@@ -35,7 +17,7 @@ async function connect() {
         }
         return database;
     } catch (error) {
-        console.error("Error connecting to MongoDB:", error.message);
+        console.error("Error connecting to MongoDB:", error);
         throw error;
     }
 }
