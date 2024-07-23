@@ -21,7 +21,7 @@
 //     });
 // };
 
-const data = require('../../data'); 
+const data = require('../../data.js'); 
 require('dotenv').config();
 
 // requests data from UnityFuel Customers
@@ -37,7 +37,7 @@ module.exports = async function (context, req) {
                 'Content-Type': 'application/json'
             }
         };
-        console.log("API Response:", context.res.json);
+        console.log("API Response:", context.res.body);
     // } catch (error) {
     //     console.error("API Error:", error);
     //     context.res = {
