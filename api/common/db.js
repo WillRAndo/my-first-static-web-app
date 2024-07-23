@@ -1,9 +1,9 @@
 // db.js
-// const { MongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb');
 
-// const uri = process.env.MONGODB_URI;
-// let client;
-// let database;
+const uri = process.env.MONGODB_URI;
+let client;
+let database;
 
 async function connect() {
     // try {
