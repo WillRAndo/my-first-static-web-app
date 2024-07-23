@@ -5,10 +5,8 @@ const uri = process.env.MONGODB_URI;
 let client;
 let database;
 
-
-
 async function connect() {
-    try {
+    // try {
         if (!client) {
             client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
             await client.connect();
@@ -16,22 +14,22 @@ async function connect() {
             console.log("Connected to MongoDB");
         }
         return database;
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-        throw error;
-    }
+    // } catch (error) {
+    //     console.error("Error connecting to MongoDB:", error);
+    //     throw error;
+    // }
 }
 
 async function getItems() {
-    try {
+    // try {
         const db = await connect();
         const collection = db.collection('customers'); // collection name
         const items = await collection.find().toArray();
         return items;
-    } catch (error) {
-        console.error("Error fetching items:", error);
-        throw error;
-    }
+    // } catch (error) {
+    //     console.error("Error fetching items:", error);
+    //     throw error;
+    // }
 }
 
 module.exports = { getItems };
