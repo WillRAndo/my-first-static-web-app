@@ -13,7 +13,28 @@
 //     };
 // }
 
-const data = require('../../data.js'); 
+
+
+
+// const data = require('../../data.js'); 
+
+const data = {
+    "_id": "61dbe610755daebc5155e468",
+    "customerName": "APCO",
+    "customerContact": null,
+    "externalData": {
+        "customerId": 400081
+    },
+    "isActive": true,
+    "eligibleProducts": [
+        "AUTOGAS"
+    ],
+    "__v": 0,
+    "notifications": {
+        "email": "saraht@apco.com.au"
+    }
+}; 
+
 // Outputs Text
 module.exports = async function (context, req) {
 
@@ -21,20 +42,19 @@ module.exports = async function (context, req) {
     //     text: "Hello from the API wando"
 
     // });
-    // context.res = {
-    //     body: data,
-    // };
-    // context.done();
-
-    context.res.body = {
-        data
-        // status: 200,
-        // headers: {
-        //     "Content-Type": "application/json"
-        // },
-        // text: JSON.stringify(data)
-
+    context.res = {
+        body: data,
     };
+    context.done();
+
+    // context.res.body = {
+    //     status: 200,
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     },
+    //     text: JSON.stringify(data)
+
+    // };
 
 };
 
