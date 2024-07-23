@@ -44,7 +44,7 @@ async function connectToDatabase() {
       client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
       await client.connect();
     } catch (error) {
-      console.error("Error connecting to MongoDB:", error);
+      console.error("Error connecting to MongoDB in db.js:", error);
       throw error;
     }
   }
