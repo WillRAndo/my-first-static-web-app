@@ -13,7 +13,7 @@
 //     };
 // }
 
-const data = require('../../data'); 
+const data = require('../../data.js'); 
 // Outputs Text
 module.exports = async function (context, req) {
 
