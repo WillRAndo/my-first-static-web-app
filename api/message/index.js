@@ -10,69 +10,37 @@
 //     };
 //     context.done();
 // };
+const { MongoClient } = require('mongodb');
 
+const uri = process.env.MONGODB_URI;
 
-const { getItems } = require('../common/db.js');
+// const { getItems } = require('../common/db.js');
 
 module.exports = async function (context, req) {
     try {
-        const items = await getItems();
+        // const items = await getItems();
+        context.log("Connected to MongoDB" + uri);
+
+        client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        await client.connect();
+        database = client.db('UnityFuel'); // DB name
+        
+
+        const collection = database.collection('customers'); // collection name
+        const items = await collection.find().toArray();
         context.res = {
             // status: 200, /* Defaults to 200 */
             body: items.length ? items : "No data found"
         };
-        console.log("API Response:", context.res.body);
+        context.log("API Response:", context.res.body);
     } catch (error) {
-        console.error("API Error:", error);
+        context.log("API Error:", error);
         context.res = {
             status: 500,
-            body: "Error connecting to MongoDB: " + error.message
+            body: "Error connecting to MongoDB from index.js: " + error.message
         };
     }
 };
 
-// const { getItems } = require('../common/db.js');
-// const { MongoClient } = require('mongodb');
-
-// const uri = process.env.MONGODB_URI;
-// let client;
-// let database;
-
-// async function connect() {
-//         if (!client) {
-//             client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-//             await client.connect();
-//             database = client.db('UnityFuel'); // DB name
-//             console.log("Connected to MongoDB");
-//         }
-//         return database;
-// }
-
-
-// async function getItems() {
-//         const db = await connect();
-//         const collection = db.collection('customers'); // collection name
-//         const items = await collection.find().toArray();
-//         return items;
-// }
-
-// module.exports = async function (context, req) {
-//     try {
-
-
-//         const items = await getItems();
-//         context.res = {
-//             // status: 200, /* Defaults to 200 */
-//             body: items.length ? items : "No data found"
-//         };
-//         console.log("API Response:", context.res.body);
-//     } catch (error) {
-//         console.error("API Error:", error);
-//         context.res = {
-//             status: 500,
-//             body: "Error connecting to MongoDB in index.js: " + error.message
-//         };
-//     }
-// };
 
 
